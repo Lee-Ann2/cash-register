@@ -2,19 +2,16 @@ def change(due, paid):
     if paid < due:
         raise ValueError(f'amount paid should be greater than amount due')
         
-    denominations = {'R200': 20000, 'R100': 10000, 'R50': '5000', 'R20': 2000, 'R10': 1000, 'R5': 500, 'R2': 200, 'R1': 100, '50c': 50, '20c': 20, '10c': 10, '5c': 5}
+    denominations = {200: 20000, 100: 10000, 50: 5000, 20: 2000, 10: 1000, 5: 500, 2: 200, 1: 100, 50: 50, 20: 20, 10: 10, 5: 5}
     changeDictionary = {}
     changeLeft = paid - due
 
     for denomination, value in denominations.items():
         if changeLeft >= value:
-            count = change // value
+            count = changeLeft // value
             changeDictionary[denomination] = count
             changeLeft -= count * value
     return changeDictionary
-change(1222, 2000)
-due = 1222
-paid = 2000
 
-total = paid - due
+total = change(1222, 2000)
 print(total)
